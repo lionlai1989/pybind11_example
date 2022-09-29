@@ -18,11 +18,15 @@ include_directories("/usr/local/include/eigen-3.4.0")
 # However, the file(GLOB...) allows for wildcard additions:
 file(GLOB SOURCES "src/*.cpp")
 
-add_executable(run_mainapp ${SOURCES})
-add_library(testStudent STATIC ${SOURCES})
+add_library(test_cmake_example SHARED ${SOURCES})
+
+# For the shared library:
+set ( PROJECT_LINK_LIBS libtest_cmake_example.so )
+link_directories(./build)
 
 add_subdirectory("./extern/pybind11")
 pybind11_add_module(pybind11_eigen ./pybind11_eigen.cpp)
+target_link_libraries(pybind11_eigen PUBLIC test_cmake_example)
 
 include(FetchContent)
 FetchContent_Declare(
@@ -43,7 +47,7 @@ add_executable(
 target_link_libraries(
   hello_test
   GTest::gtest_main
-  testStudent
+  ${PROJECT_LINK_LIBS}
 )
 
 include(GoogleTest)

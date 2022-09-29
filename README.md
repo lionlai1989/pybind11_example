@@ -34,4 +34,5 @@ Run cmake extension tool on vscode.
 Use Clang Static Analyzer and clang-tidy and GoogleTest
 
 from build import pybind11_eigen
+import numpy as np
 pybind11_eigen.crossMatrix(np.array([1,2,3]))

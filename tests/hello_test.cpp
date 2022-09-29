@@ -1,5 +1,6 @@
 #include "Student.h"
 #include "my_eigen.h"
+#include <Eigen/Dense>
 #include <gtest/gtest.h>
 #include <iostream>
 
@@ -24,4 +25,12 @@ TEST(HelloTest, MatrixAssertions) {
   expected_v << 0, -3, 2, 3, 0, -1, -2, 1, 0;
 
   EXPECT_EQ(expected_v, ret_v);
+}
+
+TEST(HelloTest, ClassAssertion) {
+  Student s("Joe");
+  s.display();
+  std::cout << s.get_name() << std::endl;
+
+  EXPECT_EQ(s.get_name(), "Joe");
 }

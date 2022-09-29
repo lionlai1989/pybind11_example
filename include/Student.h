@@ -8,5 +8,6 @@ private:
 
 public:
   Student(std::string);
+  const std::string get_name() const;
   virtual void display();
 };
