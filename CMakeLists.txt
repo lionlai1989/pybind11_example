@@ -13,7 +13,6 @@ set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
 include_directories(include)
 include_directories("/usr/local/include/eigen-3.4.0")
 
-
 # Can manually add the sources using the set command as follows:
 # set(SOURCES src/mainapp.cpp src/Student.cpp)
 # However, the file(GLOB...) allows for wildcard additions:
@@ -22,6 +21,8 @@ file(GLOB SOURCES "src/*.cpp")
 add_executable(run_mainapp ${SOURCES})
 add_library(testStudent STATIC ${SOURCES})
 
+add_subdirectory("./extern/pybind11")
+pybind11_add_module(pybind11_eigen ./pybind11_eigen.cpp)
 
 include(FetchContent)
 FetchContent_Declare(
