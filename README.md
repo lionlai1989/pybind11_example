@@ -1,4 +1,6 @@
 
+git submodule update --init
+
 install llvm, lldb, ninja
 
 vscdoe install c/c++ extension, cmake tool.
@@ -8,8 +10,8 @@ apt install python3-dev, lldb
 git add pybind11 as git submodule 
 
 Required python packages:
-scipy
-pygame
+numpy
+Pillow
 
 RUN:
 mkdir build && cd build && cmake -G Ninja .. && ninja
