@@ -8,13 +8,14 @@ vscdoe install c/c++ extension, cmake tool.
 apt install python3-dev, lldb
 
 git add pybind11 as git submodule 
-
+git submodule add -b stable git@github.com:pybind/pybind11.git extern/pybind11
+git submodule update --init
 Required python packages:
 numpy
 Pillow
 
 RUN:
-mkdir build && cd build && cmake -G Ninja .. && ninja
+mkdir -p build && cd build && cmake -G Ninja .. && ninja
 cmake -S . -B build -G Ninja && ninja -C build && (cd build; ctest -V)
 cmake -G Ninja .. && ninja
 

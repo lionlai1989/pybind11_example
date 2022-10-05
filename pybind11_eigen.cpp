@@ -4,6 +4,7 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/numpy.h>
 #include <unsupported/Eigen/CXX11/Tensor>
+#include <pybind11/stl.h>
 
 namespace py = pybind11;
 
@@ -46,10 +47,35 @@ py::array_t<T> eigenTensor(py::array_t<T> inArray) {
                           out_tensor.data());  // data pointer
 }
 
+struct Car {
+    int num_window;
+    int num_tire;
+    std::array<uint8_t,7> maintenance_per_week;
+};
+
+std::vector<Car> buy_car() {
+  std::vector<Car> vector_cars;
+  Car c;
+  c.num_window = 6;
+  c.num_tire = 4;
+  c.maintenance_per_week = {1,2,3,4,5,6,7};
+  vector_cars.emplace_back(c);
+  return vector_cars;
+
+    // std::vector<int> tmp;
+    // tmp.emplace_back(1);
+    // return tmp;
+}
 
 
 PYBIND11_MODULE(pybind11_eigen, m) {
   m.def("crossMatrix", &wrapper_crossMatrix);
   m.def("eigenTensor", &eigenTensor<double>, py::return_value_policy::move,
         py::arg("inArray"));
+  m.def("buy_car", &buy_car);
+    py::class_<Car>(m, "Car")
+    .def(py::init<>()) // <-- bind the default constructor
+    .def_readwrite("num_window", &Car::num_window)
+    .def_readwrite("num_tire", &Car::num_tire)
+    .def_readwrite("maintenance_per_week", &Car::maintenance_per_week);
 }
