@@ -39,3 +39,7 @@ Use Clang Static Analyzer and clang-tidy and GoogleTest
 from build import pybind11_eigen
 import numpy as np
 pybind11_eigen.crossMatrix(np.array([1,2,3]))
+
+
+to install this from private github account with pip:
+`python3 -m pip install git+ssh://git@github.com/lionlai1989/pybind11_example.git`
