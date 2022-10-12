@@ -16,9 +16,9 @@ include_directories("/usr/local/include/eigen-3.4.0")
 # Can manually add the sources using the set command as follows:
 # set(SOURCES src/mainapp.cpp src/Student.cpp)
 # However, the file(GLOB...) allows for wildcard additions:
-file(GLOB SOURCES "src/*.cpp")
+# file(GLOB SOURCES "src/*.cpp")
 
-add_library(test_cmake_example SHARED ${SOURCES})
+# add_library(test_cmake_example SHARED ${SOURCES})
 
 # For the shared library:
 set ( PROJECT_LINK_LIBS libtest_cmake_example.so )
