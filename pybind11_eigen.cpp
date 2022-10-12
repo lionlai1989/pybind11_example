@@ -61,10 +61,6 @@ std::vector<Car> buy_car() {
   c.maintenance_per_week = {1,2,3,4,5,6,7};
   vector_cars.emplace_back(c);
   return vector_cars;
-
-    // std::vector<int> tmp;
-    // tmp.emplace_back(1);
-    // return tmp;
 }
 
 
