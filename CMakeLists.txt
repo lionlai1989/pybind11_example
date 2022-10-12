@@ -28,6 +28,11 @@ add_subdirectory("./extern/pybind11")
 pybind11_add_module(pybind11_eigen ./pybind11_eigen.cpp)
 target_link_libraries(pybind11_eigen PUBLIC test_cmake_example)
 
+# EXAMPLE_VERSION_INFO is defined by setup.py and passed into the C++ code as a
+# define (VERSION_INFO) here.
+target_compile_definitions(pybind11_eigen
+                           PRIVATE VERSION_INFO=${EXAMPLE_VERSION_INFO})
+
 # include(FetchContent)
 # FetchContent_Declare(
 #   googletest
