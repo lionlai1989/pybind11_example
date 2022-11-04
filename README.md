@@ -16,7 +16,7 @@ An in-depth paragraph about your project and overview of use.
 * Download eigen header files eigen-3.4.0 and put to /usr/local/include/eigen-3.4.0
 
 ### Installing
-* Download repo: `git clone --recursive https://github.com/lionlai1989/pybind11_example.git`
+* Download repo: `git clone --recursive https://github.com/lionlai1989/pybind11_example.git`. If `--recursive` is not used when cloning, then `git submodule update --init` can be run to clone the submodule.
 * Create and activate venv: `python3 -m venv venv_pybind11_example && source venv_pybind11_example/bin/activate`
 * Upgrade pip and setuptools: `python3 -m pip install --upgrade pip setuptools`
 * Install: `python3 -m pip install .`
@@ -63,13 +63,6 @@ This project is licensed under the [NAME HERE] License - see the LICENSE.md file
 Inspiration, code snippets, etc.
 * [pybind-cmake-example](https://github.com/pybind/cmake_example)\
 
-git submodule update --init
-
-
-
-Required python packages:
-numpy
-Pillow
 
 RUN:
 mkdir -p build && cd build && cmake -G Ninja .. && ninja
