@@ -1,15 +1,71 @@
+# My Awesome Pybind11 CMake Eigen Example
+
+An example project to self-learn pybind11, cmake, and some useful C/C++ packages.
+
+## Description
+
+An in-depth paragraph about your project and overview of use.
+
+## Getting Started
+
+### Dependencies
+
+* Install vscode, c/c++ extension, and cmake tool.
+* Install llvm, lldb, ninja.
+* (Optional) apt install python3-dev
+* Download eigen header files eigen-3.4.0 and put to /usr/local/include/eigen-3.4.0
+
+### Installing
+* Download repo: `git clone --recursive https://github.com/lionlai1989/pybind11_example.git`
+* Create and activate venv: `python3 -m venv venv_pybind11_example && source venv_pybind11_example/bin/activate`
+* Upgrade pip and setuptools: `python3 -m pip install --upgrade pip setuptools`
+* Install: `python3 -m pip install .`
+* Install in editable mode: `python3 -m pip install -e .`
+* Install from github repo: ``
+
+### Executing program
+
+* How to run the program
+* Step-by-step bullets
+```
+code blocks for commands
+```
+
+## Help
+
+Any advise for common problems or issues.
+```
+command to run if program contains helper info
+```
+
+## Authors
+
+Contributors names and contact info
+
+ex. Dominique Pizzie  
+ex. [@DomPizzie](https://twitter.com/dompizzie)
+
+## Version History
+
+* 0.2
+    * Various bug fixes and optimizations
+    * See [commit change]() or See [release history]()
+* 0.1
+    * Initial Release
+
+## License
+
+This project is licensed under the [NAME HERE] License - see the LICENSE.md file for details
+
+## Acknowledgments
+
+Inspiration, code snippets, etc.
+* [pybind-cmake-example](https://github.com/pybind/cmake_example)\
 
 git submodule update --init
 
-install llvm, lldb, ninja
 
-vscdoe install c/c++ extension, cmake tool.
 
-apt install python3-dev, lldb
-
-git add pybind11 as git submodule 
-git submodule add -b stable git@github.com:pybind/pybind11.git extern/pybind11
-git submodule update --init
 Required python packages:
 numpy
 Pillow
@@ -24,7 +80,7 @@ c++ -O3 -Wall -shared -std=c++11 -fPIC $(python3-config --includes) -Iextern/pyb
 to create share library (.so)
 
 ### include eigen path
-1. Download eigen header files eigen-3.4.0 and put to /usr/local/include/eigen-3.4.0
+
 2. run
 c++ -O3 -Wall -shared -std=c++11 -I /usr/local/include/eigen-3.4.0 -fPIC $(python3-config --includes) -Iextern/pybind11/include example.cpp -o example$(python3-config --extension-suffix)
 
