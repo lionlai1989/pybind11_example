@@ -1,6 +1,6 @@
 
 import pybind11_eigen
-# import numpy as np
+import numpy as np
 # from PIL import Image
 
 if __name__ == "__main__":
@@ -11,8 +11,8 @@ if __name__ == "__main__":
     # print(a, a.shape)
     # print(pybind11_eigen.eigenTensor(a))
 
-    # ret = pybind11_eigen.crossMatrix(np.array([1,2,3]))
-    # print(ret)
+    ret = pybind11_eigen.crossMatrix(np.array([1,2,3]))
+    print(ret)
     
     # with Image.open("handsomeboy.jpg") as img:
     #     pixels = np.asarray(img)

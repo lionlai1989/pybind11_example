@@ -32,6 +32,10 @@ $ python3 test_pybind11.py
 [1, 2, 3, 4, 5, 6, 7]
 ```
 
+### Developing
+* Use cmake to build the project. `cmake -S . -B build -G Ninja && ninja -C build`
+
+
 ## Help
 
 Any advise for common problems or issues.

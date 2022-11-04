@@ -1,7 +1,6 @@
-// #include "my_eigen.h" <---------- this needs to be commented out.
+#include "my_eigen.h" // <---------- this needs to be commented out.
 #include <iostream>
-#include <pybind11/eigen.h> // It must be used here. It doesn't work with
-//<Eigen/Dense>.
+#include <pybind11/eigen.h> // It must be used here. It doesn't work with <Eigen/Dense>.
 #include <pybind11/numpy.h>
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -9,13 +8,13 @@
 
 namespace py = pybind11;
 
-// Eigen::Matrix<float, 3, 3> wrapper_crossMatrix(Eigen::Matrix<float, 3, 1> v)
-// {
-//   // Eigen::Matrix<float, 3, 3> m;
-//   // m << 0, -v[2], v[1], v[2], 0, -v[0], -v[1], v[0], 0;
-//   auto m = crossMatrix(v);
-//   return m;
-// }
+Eigen::Matrix<float, 3, 3> wrapper_crossMatrix(Eigen::Matrix<float, 3, 1> v)
+{
+  // Eigen::Matrix<float, 3, 3> m;
+  // m << 0, -v[2], v[1], v[2], 0, -v[0], -v[1], v[0], 0;
+  auto m = crossMatrix(v);
+  return m;
+}
 
 // // return 3 dimensional ndarray with reversed order of input ndarray
 // template<class T>
@@ -68,7 +67,7 @@ std::vector<Car> buy_car() {
 }
 
 PYBIND11_MODULE(pybind11_eigen, m) {
-  // m.def("crossMatrix", &wrapper_crossMatrix);
+  m.def("crossMatrix", &wrapper_crossMatrix);
   // m.def("eigenTensor", &eigenTensor<double>, py::return_value_policy::move,
   //       py::arg("inArray"));
   m.def("buy_car", &buy_car);

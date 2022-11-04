@@ -16,17 +16,17 @@ include_directories("/usr/local/include/eigen-3.4.0")
 # Can manually add the sources using the set command as follows:
 # set(SOURCES src/mainapp.cpp src/Student.cpp)
 # However, the file(GLOB...) allows for wildcard additions:
-# file(GLOB SOURCES "src/*.cpp")
+file(GLOB SOURCES "src/*.cpp")
 
-# add_library(test_cmake_example SHARED ${SOURCES})
+add_library(src_example SHARED ${SOURCES})
 
 # For the shared library:
-set ( PROJECT_LINK_LIBS libtest_cmake_example.so )
+set (PROJECT_LINK_LIBS src_example.so)
 # link_directories(./build)
 
 add_subdirectory("./extern/pybind11")
 pybind11_add_module(pybind11_eigen ./pybind11_eigen.cpp)
-# target_link_libraries(pybind11_eigen PUBLIC test_cmake_example)
+target_link_libraries(pybind11_eigen PUBLIC src_example) # this line is essential to make python import and call crossMatrix.
 
 # EXAMPLE_VERSION_INFO is defined by setup.py and passed into the C++ code as a
 # define (VERSION_INFO) here.
