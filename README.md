@@ -21,14 +21,15 @@ An in-depth paragraph about your project and overview of use.
 * Upgrade pip and setuptools: `python3 -m pip install --upgrade pip setuptools`
 * Install: `python3 -m pip install .`
 * Install in editable mode: `python3 -m pip install -e .`
-* Install from github repo: ``
+* Install from github repo: `python3 -m pip install "pybind11_eigen @ git+https://github.com/lionlai1989/pybind11_example.git"` or `python3 -m pip install "pybind11_eigen @ git+ssh://git@github.com/lionlai1989/pybind11_example.git"`. Notice the name of the package is `pybind11_eigen` but not `pybind11_example`. 
 
 ### Executing program
 
-* How to run the program
-* Step-by-step bullets
+* Run the `test_pybind11.py` to show the C++ library can be imported as a python package.  
 ```
-code blocks for commands
+$ python3 test_pybind11.py 
+4
+[1, 2, 3, 4, 5, 6, 7]
 ```
 
 ## Help
@@ -95,7 +96,3 @@ Use Clang Static Analyzer and clang-tidy and GoogleTest
 from build import pybind11_eigen
 import numpy as np
 pybind11_eigen.crossMatrix(np.array([1,2,3]))
-
-
-to install this from private github account with pip:
-`python3 -m pip install git+ssh://git@github.com/lionlai1989/pybind11_example.git`

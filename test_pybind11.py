@@ -1,7 +1,7 @@
 
-from build import pybind11_eigen
-import numpy as np
-from PIL import Image
+import pybind11_eigen
+# import numpy as np
+# from PIL import Image
 
 if __name__ == "__main__":
     car = pybind11_eigen.buy_car()
