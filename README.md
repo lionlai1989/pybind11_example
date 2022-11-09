@@ -10,7 +10,7 @@ An in-depth paragraph about your project and overview of use.
 
 ### Dependencies
 
-* Install vscode, c/c++ extension, and cmake tool.
+* Install vscode and c/c++ extension. Run cmake extension tool on vscode so vscode can figure out the libraries dependencies.
 * Install llvm, lldb, ninja.
 * (Optional) apt install python3-dev
 * Download eigen header files eigen-3.4.0 and put to /usr/local/include/eigen-3.4.0
@@ -34,7 +34,7 @@ $ python3 test_pybind11.py
 
 ### Developing
 * Use cmake to build the project. `cmake -S . -B build -G Ninja && ninja -C build`
-
+* Run tests. `(cd build; ctest -V)`
 
 ## Help
 
@@ -46,9 +46,8 @@ command to run if program contains helper info
 ## Authors
 
 Contributors names and contact info
-
-ex. Dominique Pizzie  
-ex. [@DomPizzie](https://twitter.com/dompizzie)
+Zion Lai
+[@DomPizzie](https://twitter.com/dompizzie)
 
 ## Version History
 
@@ -68,28 +67,7 @@ Inspiration, code snippets, etc.
 * [pybind-cmake-example](https://github.com/pybind/cmake_example)\
 
 
-RUN:
-mkdir -p build && cd build && cmake -G Ninja .. && ninja
-cmake -S . -B build -G Ninja && ninja -C build && (cd build; ctest -V)
-cmake -G Ninja .. && ninja
-
-Run
-c++ -O3 -Wall -shared -std=c++11 -fPIC $(python3-config --includes) -Iextern/pybind11/include example.cpp -o example$(python3-config --extension-suffix)
-to create share library (.so)
-
-### include eigen path
-
-2. run
-c++ -O3 -Wall -shared -std=c++11 -I /usr/local/include/eigen-3.4.0 -fPIC $(python3-config --includes) -Iextern/pybind11/include example.cpp -o example$(python3-config --extension-suffix)
-
 Try libvips and CImg and terrasect and probably opencv.
 tensorflow uses eigen::tensor though.
 
-
-Run cmake extension tool on vscode.
-
 Use Clang Static Analyzer and clang-tidy and GoogleTest
-
-from build import pybind11_eigen
-import numpy as np
-pybind11_eigen.crossMatrix(np.array([1,2,3]))
