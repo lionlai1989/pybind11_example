@@ -65,7 +65,7 @@ This project is licensed under the [NAME HERE] License - see the LICENSE.md file
 
 Inspiration, code snippets, etc.
 * [pybind-cmake-example](https://github.com/pybind/cmake_example)\
-
+* [gtest-cmake-example](https://github.com/dmonopoly/gtest-cmake-example)
 
 Try libvips and CImg and terrasect and probably opencv.
 tensorflow uses eigen::tensor though.
