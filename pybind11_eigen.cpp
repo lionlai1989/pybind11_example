@@ -1,4 +1,4 @@
-#include "my_eigen.h" // <---------- this needs to be commented out.
+#include "my_eigen.hpp" // <---------- this needs to be commented out.
 #include <iostream>
 #include <pybind11/eigen.h> // It must be used here. It doesn't work with <Eigen/Dense>.
 #include <pybind11/numpy.h>

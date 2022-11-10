@@ -5,31 +5,36 @@ project(pybind11_eigen VERSION 0.0.1)
 option(runtest "Build all tests." OFF) # Makes boolean 'test' available.
 
 # GoogleTest requires at least C++14
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -Wall --std=c++17 -O3 -fPIC")
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
 
-
-# Bring the headers, such as Student.h into the project
-include_directories(include)
 include_directories("/usr/local/include/eigen-3.4.0")
 
-# Can manually add the sources using the set command as follows:
-# set(SOURCES src/mainapp.cpp src/Student.cpp)
-# However, the file(GLOB...) allows for wildcard additions:
-file(GLOB SOURCES "src/*.cpp")
+add_subdirectory(src)
 
-add_library(src_example SHARED ${SOURCES})
+target_include_directories(myeigen PRIVATE ${CMAKE_SOURCE_DIR})
+target_include_directories(student PRIVATE ${CMAKE_SOURCE_DIR})
+
+# add_library(src_example SHARED ${SOURCES})
 
 # For the shared library:
-set (PROJECT_LINK_LIBS src_example.so)
-link_directories(./build)
+# set (PROJECT_LINK_LIBS srclib.so)
+# link_directories(./build)
 
-add_subdirectory("./extern/pybind11")
+# include_directories("/usr/local/include/eigen-3.4.0")
+
+
+add_subdirectory(./extern/pybind11)
 pybind11_add_module(pybind11_eigen ./pybind11_eigen.cpp)
-target_link_libraries(pybind11_eigen PUBLIC src_example) # this line is essential to make python import and call crossMatrix.
+target_include_directories(pybind11_eigen PRIVATE ./src)
+target_link_libraries(pybind11_eigen PUBLIC myeigen student) # this line is essential to make python import and call crossMatrix.
+
 
 # EXAMPLE_VERSION_INFO is defined by setup.py and passed into the C++ code as a
 # define (VERSION_INFO) here.
@@ -62,6 +67,8 @@ if (runtest)
       GTest::gtest_main
       ${PROJECT_LINK_LIBS}
     )
+    target_include_directories(hello_test PRIVATE ./src)
+
 
     include(GoogleTest)
     gtest_discover_tests(hello_test)

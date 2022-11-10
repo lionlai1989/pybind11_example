@@ -1,4 +1,4 @@
-#include "Student.h"
+#include <src/Student.hpp>
 #include <iostream>
 using namespace std;
 
