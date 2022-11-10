@@ -1,5 +1,5 @@
-#include "Student.h"
-#include "my_eigen.h"
+#include <src/Student.hpp>
+#include <src/my_eigen.hpp>
 #include <Eigen/Dense>
 #include <gtest/gtest.h>
 #include <iostream>

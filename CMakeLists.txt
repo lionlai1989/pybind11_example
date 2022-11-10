@@ -8,9 +8,7 @@ option(runtest "Build all tests." OFF) # Makes boolean 'test' available.
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_CXX_EXTENSIONS OFF)
-
 set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -Wall --std=c++17 -O3 -fPIC")
-
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
 
@@ -18,29 +16,17 @@ include_directories("/usr/local/include/eigen-3.4.0")
 
 add_subdirectory(src)
 
-target_include_directories(myeigen PRIVATE ${CMAKE_SOURCE_DIR})
-target_include_directories(student PRIVATE ${CMAKE_SOURCE_DIR})
+target_include_directories(srclib PRIVATE ${CMAKE_SOURCE_DIR})
 
-# add_library(src_example SHARED ${SOURCES})
-
-# For the shared library:
-# set (PROJECT_LINK_LIBS srclib.so)
-# link_directories(./build)
-
-# include_directories("/usr/local/include/eigen-3.4.0")
-
-
-add_subdirectory(./extern/pybind11)
-pybind11_add_module(pybind11_eigen ./pybind11_eigen.cpp)
-target_include_directories(pybind11_eigen PRIVATE ./src)
-target_link_libraries(pybind11_eigen PUBLIC myeigen student) # this line is essential to make python import and call crossMatrix.
+add_subdirectory("./extern/pybind11")
+pybind11_add_module(pybind11_eigen pybind/pybind11_eigen.cpp)
+target_link_libraries(pybind11_eigen PRIVATE srclib)
+target_include_directories(pybind11_eigen PRIVATE  ${CMAKE_SOURCE_DIR})
 
 
 # EXAMPLE_VERSION_INFO is defined by setup.py and passed into the C++ code as a
 # define (VERSION_INFO) here.
-target_compile_definitions(pybind11_eigen
-                           PRIVATE VERSION_INFO=${EXAMPLE_VERSION_INFO})
-
+target_compile_definitions(pybind11_eigen PRIVATE VERSION_INFO=${EXAMPLE_VERSION_INFO})
 
 ################################
 # Testing
@@ -65,10 +51,9 @@ if (runtest)
     target_link_libraries(
       hello_test
       GTest::gtest_main
-      ${PROJECT_LINK_LIBS}
+      srclib
     )
-    target_include_directories(hello_test PRIVATE ./src)
-
+    target_include_directories(hello_test PRIVATE ${CMAKE_SOURCE_DIR})
 
     include(GoogleTest)
     gtest_discover_tests(hello_test)
