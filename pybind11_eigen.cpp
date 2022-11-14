@@ -5,6 +5,7 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
 #include <unsupported/Eigen/CXX11/Tensor>
+#include <src/Student.hpp>
 
 namespace py = pybind11;
 
@@ -50,11 +51,7 @@ Eigen::Matrix<float, 3, 3> wrapper_crossMatrix(Eigen::Matrix<float, 3, 1> v)
 //                           out_tensor.data());  // data pointer
 // }
 
-struct Car {
-  int num_window;
-  int num_tire;
-  std::array<uint8_t, 7> maintenance_per_week;
-};
+
 
 std::vector<Car> buy_car() {
   std::vector<Car> vector_cars;
@@ -67,7 +64,9 @@ std::vector<Car> buy_car() {
 }
 
 PYBIND11_MODULE(pybind11_eigen, m) {
-  m.def("crossMatrix", &wrapper_crossMatrix);
+  // the following line doesn't work. if applied, there will be import error.
+  // python3 -m pip install -e . doesn't work.
+  //m.def("crossMatrix", &wrapper_crossMatrix);
   // m.def("eigenTensor", &eigenTensor<double>, py::return_value_policy::move,
   //       py::arg("inArray"));
   m.def("buy_car", &buy_car);

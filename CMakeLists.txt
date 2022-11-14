@@ -12,10 +12,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
 
-include_directories("/usr/local/include/eigen-3.4.0")
-
 add_subdirectory(src)
 # target_include_directories(srclib PRIVATE ${CMAKE_SOURCE_DIR})
+
+include_directories("/usr/local/include/eigen-3.4.0")
 
 add_subdirectory(./extern/pybind11)
 pybind11_add_module(pybind11_eigen pybind11_eigen.cpp)

@@ -11,3 +11,9 @@ public:
   const std::string get_name() const;
   virtual void display();
 };
+
+struct Car {
+  int num_window;
+  int num_tire;
+  std::array<uint8_t, 7> maintenance_per_week;
+};
