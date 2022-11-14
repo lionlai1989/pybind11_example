@@ -7,3 +7,5 @@ file(GLOB SOURCES "./*.cpp" "./*.hpp")
 
 # Generate the shared library from the sources
 add_library(srclib SHARED ${SOURCES})
+
+target_include_directories(srclib PRIVATE  ${CMAKE_SOURCE_DIR})
