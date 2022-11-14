@@ -33,7 +33,7 @@ $ python3 test_pybind11.py
 ```
 
 ### Developing
-* Use cmake to build the project. `cmake -Druntest=ON -S . -B build -G Ninja && ninja -C build`
+* Use cmake to build the project. `cmake -Druntest=ON -S . -B build -G Ninja && cmake --build build`
 * Run tests. `(cd build; ctest -V)`
 
 ## Help
