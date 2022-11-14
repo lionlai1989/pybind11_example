@@ -13,7 +13,6 @@ set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
 
 add_subdirectory(src)
-# target_include_directories(srclib PRIVATE ${CMAKE_SOURCE_DIR})
 
 include_directories("/usr/local/include/eigen-3.4.0")
 
