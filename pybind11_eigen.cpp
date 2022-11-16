@@ -30,10 +30,15 @@ std::vector<Car> buy_car() {
 PYBIND11_MODULE(pybind11_eigen, m) {
   // the following line doesn't work. if applied, there will be import error.
   // python3 -m pip install -e . doesn't work.
-  //m.def("crossMatrix", &wrapper_crossMatrix);
-  // m.def("eigenTensor", &eigenTensor<double>, py::return_value_policy::move,
-  //       py::arg("inArray"));
+  m.def("crossMatrix", &wrapper_crossMatrix);
+
   m.def("buy_car", &buy_car);
+
+  py::class_<Student>(m, "Student")
+        .def(py::init<const std::string &>())
+        .def("display", &Student::display)
+        .def("get_name", &Student::get_name);
+
   py::class_<Car>(m, "Car")
       .def(py::init<>()) // <-- bind the default constructor
       .def_readwrite("num_window", &Car::num_window)

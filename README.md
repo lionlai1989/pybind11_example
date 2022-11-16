@@ -33,7 +33,11 @@ $ python3 test_pybind11.py
 ```
 
 ### Developing
-* Use cmake to build the project. `cmake -Druntest=ON -S . -B build -G Ninja && cmake --build build`
+* First remove the folder `build/temp.linux-x86_64-cpython-38/pybind11_eigen` which has the memory of configuration from pip install. This step just has to be run the first time.
+* Use cmake to build the project:
+```shell
+cmake . -B build/temp.linux-x86_64-cpython-38/pybind11_eigen -DCMAKE_LIBRARY_OUTPUT_DIRECTORY=`pwd`/build/lib.linux-x86_64-cpython-38/ -DPYTHON_EXECUTABLE=`which python3` -DCMAKE_BUILD_TYPE=Release -DEXAMPLE_VERSION_INFO=0.0.1 -GNinja && cmake --build build/temp.linux-x86_64-cpython-38/pybind11_eigen
+```
 * Run tests. `(cd build; ctest -V)`
 
 ## Help
