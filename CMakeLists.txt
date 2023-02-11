@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.4...3.18)
+cmake_minimum_required(VERSION 3.20...3.25)
 project(pybind11_eigen VERSION 0.0.1)
 
 # Options. Turn on with 'cmake -Dmyvarname=ON'.
