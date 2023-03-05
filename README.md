@@ -4,7 +4,9 @@ It's a C++ project template to self-educate how to create a C++ library with cma
 
 ## Description
 
-An in-depth paragraph about your project and overview of use.
+This project is a Pybind11 template. I personally found that most of the Pybind11 tutorials on the internet is either too naive to be useful or too complicate to learn Pybind11 for a complete beginner like me. Therefore, I decide to create this template which is an intermediate level to teach myself creating a C++ project with Python binding. This template has the following features:
+- Use CMake.
+- Demonstrate adding stb, Eigen, and Pybind11 as submodules.
 
 ## Getting Started
 
