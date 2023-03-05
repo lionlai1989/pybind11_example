@@ -1,6 +1,6 @@
-# My Awesome Pybind11 CMake Eigen Example
+# C++ project template with Pybind11
 
-An example project to self-learn pybind11, cmake, and some useful C/C++ packages.
+It's a C++ project template to self-educate how to create a C++ library with cmake, Pybind11, and some useful C/C++ packages.
 
 ## Description
 
@@ -17,8 +17,7 @@ An in-depth paragraph about your project and overview of use.
 
 ### Installing
 * Download repo: `git clone --recursive https://github.com/lionlai1989/pybind11_example.git`. If `--recursive` is not used when cloning, then `git submodule update --init` can be run to clone the submodule.
-* Create and activate venv: `python3 -m venv venv_pybind11_example && source venv_pybind11_example/bin/activate`
-* Upgrade pip and setuptools: `python3 -m pip install --upgrade pip setuptools`
+* Create, activate venv and update pip: `python3 -m venv venv && source venv/bin/activate && python3 -m pip install --upgrade pip`
 * Install: `python3 -m pip install .`
 * Install in editable mode: `python3 -m pip install -e .`
 * Install from github repo: `python3 -m pip install "pybind11_eigen @ git+https://github.com/lionlai1989/pybind11_example.git"` or `python3 -m pip install "pybind11_eigen @ git+ssh://git@github.com/lionlai1989/pybind11_example.git"`. Notice the name of the package is `pybind11_eigen` but not `pybind11_example`. 
