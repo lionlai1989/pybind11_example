@@ -132,7 +132,7 @@ setup(
     url="https://github.com/lionlai1989/pybind11_example",
     description="A test project using pybind11",
     long_description="",
-    install_requires="numpy",
+    install_requires=["numpy"],
     extras_require={"test": "pytest"},
     # Currently, build_ext only provides an optional "highest supported C++
     # level" feature, but in the future it may provide more features.

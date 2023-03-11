@@ -8,8 +8,10 @@ list(APPEND CMAKE_PREFIX_PATH "${CMAKE_SOURCE_DIR}/extern/eigen-3.4.0/")
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/extern/eigen-3.4.0/cmake")
 find_package(Eigen3 3.4.0 REQUIRED)
 
-list(APPEND CMAKE_PREFIX_PATH "${CMAKE_SOURCE_DIR}/venv/lib/python3.8/site-packages/pybind11")
-find_package(pybind11 REQUIRED)
+# list(APPEND CMAKE_PREFIX_PATH "${CMAKE_SOURCE_DIR}/venv/lib/python3.8/site-packages/pybind11")
+add_subdirectory(extern/pybind11)
+
+# find_package(pybind11 REQUIRED)
 
 add_subdirectory(src/mypackage)
 # add_subdirectory(examples)
