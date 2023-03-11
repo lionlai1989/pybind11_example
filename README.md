@@ -16,6 +16,11 @@ This project is a Pybind11 template. I personally found that most of the Pybind1
 * Install llvm, lldb, ninja.
 * (Optional) apt install python3-dev
 * Download eigen header files eigen-3.4.0 and put to /usr/local/include/eigen-3.4.0
+* if got error:
+```
+/home/lai/pybind11_example/venv/lib/python3.8/site-packages/pybind11/include/pybind11/detail/common.h:266:10: fatal error: Python.h: No such file or directory
+```
+Run `sudo apt install python3-dev` will install python3.8 on ubuntu20.04.
 
 ### Installing
 * Download repo: `git clone --recursive https://github.com/lionlai1989/pybind11_example.git`. If `--recursive` is not used when cloning, then `git submodule update --init` can be run to clone the submodule.
@@ -31,6 +36,13 @@ This project is a Pybind11 template. I personally found that most of the Pybind1
 $ python3 test_pybind11.py 
 4
 [1, 2, 3, 4, 5, 6, 7]
+```
+* Run `python3` in the virtual environment. currently, i need to go to `build` folder to run the code below.
+```
+import pybind11_eigen
+import numpy as np
+a = np.array([1,2,3])
+b = pybind11_eigen.crossMatrix(a)
 ```
 
 ### Developing
