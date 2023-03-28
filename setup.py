@@ -125,21 +125,9 @@ class CMakeBuild(build_ext):
 
 
 setup(
-    name="pybind11_eigen",
-    version="0.0.1",
-    author="ChihAn Lai",
-    author_email="lionlai1989@gmail.com",
-    url="https://github.com/lionlai1989/pybind11_example",
-    description="A test project using pybind11",
-    long_description="",
-    install_requires=["numpy"],
-    extras_require={"test": "pytest"},
     # Currently, build_ext only provides an optional "highest supported C++
     # level" feature, but in the future it may provide more features.
-
     ext_modules=[CMakeExtension("pybind11_eigen")],
     cmdclass={"build_ext": CMakeBuild},
     zip_safe=False,
-
-    python_requires=">=3.8",
 )

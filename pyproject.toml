@@ -1,3 +1,25 @@
 [build-system]
 requires = ["setuptools>=62", "wheel", "ninja", "cmake>=3.22"]
 build-backend = "setuptools.build_meta"
+
+
+[project]
+name = "xtensor_image"
+version = "0.0.1"
+authors = [
+  { name="Lai", email="lionlai1989@gmail.com" },
+]
+url="https://github.com/lionlai1989/pybind11_example",
+
+description = "A C++ Project Template with pybind11"
+readme = "README.md"
+requires-python = ">=3.8"
+
+
+dependencies = [
+    "numpy~=1.24.0, !=1.24.2"
+]
+
+[project.optional-dependencies]
+dev = ["black"]
+mytest = ["pytest"]

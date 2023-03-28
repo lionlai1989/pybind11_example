@@ -18,6 +18,28 @@ This template has the following features:
 - Submodules for [stb image library](https://github.com/nothings/stb), [xtensor](https://github.com/xtensor-stack/xtensor), and [Pybind11](https://github.com/pybind/pybind11).
 
 ### Dependencies
+### Dependencies
+Before you start, you need to make sure you have the following dependencies installed:
+* **CMake 3.22.0 or higher:** If you don't have CMake installed, or if you need to update it, you can follow the instructions [here](https://askubuntu.com/questions/355565/how-do-i-install-the-latest-version-of-cmake-from-the-command-line). To use version 3.22, you can download it from https://cmake.org/files/v3.22/cmake-3.22.6.tar.gz.
+* **stb image library:** This is a C library for loading and saving images. It's also included as a git submodule, so you don't need to do anything extra.
+* **xtensor-assosiated library:** xtensor is a numpy for C++ library. All
+  required code is added as git submodules. Unlike eigen and stb library, I
+  can't figure out a way to just add folders to make CMake work. We need to
+  first install xtensor and then use it. Please follow the instruction below:
+  * Isntall xtl:
+  ```
+  (cd extern/xtl && cmake -D CMAKE_INSTALL_PREFIX=/tmp/xtl-install && make install)
+  ```
+  * Install xtensor:
+  ```
+  (cd extern/xtensor && cmake -D CMAKE_INSTALL_PREFIX=/tmp/xtensor-install -DCMAKE_PREFIX_PATH=/tmp/xtl-install && make install)
+  ```
+  * Install xsimd:
+  ```
+  (cd extern/xsimd && cmake -D CMAKE_INSTALL_PREFIX=/tmp/xsimd-install && make install)
+  ```
+  
+
 
 * Install vscode and c/c++ extension. Run cmake extension tool on vscode so vscode can figure out the libraries dependencies.
 * Install llvm, lldb, ninja.
