@@ -6,3 +6,12 @@
 	path = extern/stb
 	url = https://github.com/nothings/stb.git
 	branch = master
+[submodule "extern/xtensor"]
+	path = extern/xtensor
+	url = git@github.com:xtensor-stack/xtensor.git
+[submodule "extern/xsimd"]
+	path = extern/xsimd
+	url = git@github.com:xtensor-stack/xsimd.git
+[submodule "extern/xtl"]
+	path = extern/xtl
+	url = git@github.com:xtensor-stack/xtl.git
