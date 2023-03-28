@@ -3,6 +3,8 @@ add_subdirectory(image)
 add_library(rgb2gray_static STATIC)
 target_sources(rgb2gray_static PUBLIC rgb2gray.cpp)
 
+target_link_libraries(rgb2gray_static image_xtensor)
+
 target_include_directories(rgb2gray_static PUBLIC ${CMAKE_SOURCE_DIR}/include ${CMAKE_SOURCE_DIR}/src)
 
 target_include_directories(

@@ -32,7 +32,6 @@ struct ImageXTensor {
 };
 
 ImageXTensor rgb_to_grayscale_xtensor(const ImageXTensor &img);
-ImageXTensor gaussian_blur(const ImageXTensor &img, double sigma);
 } // namespace mypackage::image
 
 #endif
