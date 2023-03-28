@@ -1,14 +1,21 @@
-# C++ project template with Pybind11
+# Pybind11 Project Template
 
-It's a C++ project template to self-educate how to create a C++ library with cmake, Pybind11, and some useful C/C++ packages.
+Welcome to the C++ project template designed for self-education! Our aim is to
+help you create a C++ library using some of the most useful C/C++ packages,
+Pybind11, and cmake. It's important to note that this project is focused on C++
+development rather than Python, so don't be surprised if the development flow
+feels a bit different from Python development. With this template, you can get
+hands-on experience building a C++ library while exploring the benefits of cmake
+and Pybind11. So, let's dive in and start learning!
 
 ## Description
 
-This project is a Pybind11 template. I personally found that most of the Pybind11 tutorials on the internet is either too naive to be useful or too complicate to learn Pybind11 for a complete beginner like me. Therefore, I decide to create this template which is an intermediate level to teach myself creating a C++ project with Python binding. This template has the following features:
-- Use CMake.
-- Demonstrate adding stb, Eigen, and Pybind11 as submodules.
+As a beginner myself, I found that many of the Pybind11 tutorials online were either too simplistic to be practical for real-world projects or far too complicated to grasp as a newcomer. Of course, simple projects are great for learning the basics, but often, I found myself spending hours cobbling together multiple tutorials to create a state in which I could really start programming in C++. This template is my humble attempt to bridge that gap - an intermediate level resource to help myself and others learn how to create a C++ project with Python binding. My hope is that, in the future, when I need to start a C++ project with Python binding, I can simply use this template to quickly and easily handle the building environment, allowing me to focus on the actual code. So, let's dive in and learn together!
 
 ## Getting Started
+This template has the following features:
+- Built with CMake for seamless integration
+- Submodules for [stb image library](https://github.com/nothings/stb), [xtensor](https://github.com/xtensor-stack/xtensor), and [Pybind11](https://github.com/pybind/pybind11).
 
 ### Dependencies
 
