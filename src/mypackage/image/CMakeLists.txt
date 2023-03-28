@@ -6,7 +6,6 @@ target_include_directories(stb_library PUBLIC ${CMAKE_SOURCE_DIR}/extern)
 add_library(image_xtensor STATIC)
 
 target_link_libraries (image_xtensor xtensor xtensor::optimize xtensor::use_xsimd stb_library)
-target_link_libraries (test_xtensor xtensor xtensor::optimize xtensor::use_xsimd)
 
 target_sources(image_xtensor PUBLIC image_xtensor.cpp)
 target_include_directories(image_xtensor PUBLIC ${CMAKE_SOURCE_DIR}/src ${CMAKE_SOURCE_DIR}/extern)

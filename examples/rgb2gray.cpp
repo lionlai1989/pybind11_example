@@ -41,9 +41,7 @@ int main(int argc, char **argv) {
   std::cout << "Convert the RGB file " << rgb_path << " to the grayscale file "
             << gray_path << '\n';
 
-  if (method == "eigen") {
-    mypackage::rgb2gray_image_eigen(rgb_path, gray_path);
-  } else if (method == "xtensor") {
+  if (method == "xtensor") {
     mypackage::rgb2gray_image_xtensor(rgb_path, gray_path);
   } else {
     std::cerr << "Unsuppported rgb2gray method.";
