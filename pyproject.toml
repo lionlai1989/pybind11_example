@@ -4,21 +4,22 @@ build-backend = "setuptools.build_meta"
 
 
 [project]
-name = "xtensor_image"
+name = "pybind11_template"
 version = "0.0.1"
 authors = [
   { name="Lai", email="lionlai1989@gmail.com" },
 ]
-url="https://github.com/lionlai1989/pybind11_example",
-
-description = "A C++ Project Template with pybind11"
+description = "A C++ Project Template with Pybind11"
 readme = "README.md"
 requires-python = ">=3.8"
-
 
 dependencies = [
     "numpy~=1.24.0, !=1.24.2"
 ]
+
+
+[project.urls]
+"Homepage" = "https://github.com/lionlai1989/pybind11_example"
 
 [project.optional-dependencies]
 dev = ["black"]

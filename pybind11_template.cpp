@@ -4,21 +4,22 @@
 #include <pybind11/numpy.h>
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
-#include <unsupported/Eigen/CXX11/Tensor>
+//#include <unsupported/Eigen/CXX11/Tensor>
 // #include <src/Student.hpp>
 
 namespace py = pybind11;
 
-Eigen::Matrix<float, 3, 3> crossMatrix(Eigen::Matrix<float, 3, 1> v) {
-  Eigen::Matrix<float, 3, 3> m;
-  m << 0, -v[2], v[1], v[2], 0, -v[0], -v[1], v[0], 0;
-  return m;
-}
+// Eigen::Matrix<float, 3, 3> crossMatrix(Eigen::Matrix<float, 3, 1> v) {
+//   Eigen::Matrix<float, 3, 3> m;
+//   m << 0, -v[2], v[1], v[2], 0, -v[0], -v[1], v[0], 0;
+//   return m;
+// }
 
-Eigen::Matrix<float, 3, 3> wrapper_crossMatrix(Eigen::Matrix<float, 3, 1> v) {
-  auto m = crossMatrix(v);
-  return m;
-}
+// Eigen::Matrix<float, 3, 3> wrapper_crossMatrix(Eigen::Matrix<float, 3, 1> v)
+// {
+//   auto m = crossMatrix(v);
+//   return m;
+// }
 
 // std::vector<Car> buy_car() {
 //   std::vector<Car> vector_cars;
