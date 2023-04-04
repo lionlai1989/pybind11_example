@@ -15,8 +15,7 @@ Eigen::Matrix<float, 3, 3> crossMatrix(Eigen::Matrix<float, 3, 1> v) {
   return m;
 }
 
-Eigen::Matrix<float, 3, 3> wrapper_crossMatrix(Eigen::Matrix<float, 3, 1> v)
-{
+Eigen::Matrix<float, 3, 3> wrapper_crossMatrix(Eigen::Matrix<float, 3, 1> v) {
   auto m = crossMatrix(v);
   return m;
 }
@@ -31,7 +30,7 @@ Eigen::Matrix<float, 3, 3> wrapper_crossMatrix(Eigen::Matrix<float, 3, 1> v)
 //   return vector_cars;
 // }
 
-PYBIND11_MODULE(pybind11_eigen, m) {
+PYBIND11_MODULE(pybind11_template, m) {
   // the following line doesn't work. if applied, there will be import error.
   // python3 -m pip install -e . doesn't work.
   m.def("crossMatrix", &wrapper_crossMatrix);

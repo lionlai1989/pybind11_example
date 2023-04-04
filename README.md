@@ -50,20 +50,22 @@ Before you start, please make sure you have the following dependencies installed
   * `ninja`
   * `python3-dev` (install this with apt install python3-dev)
 
-### Downloading
+### Downloading (Optional)
 * To download this repository, run the following command:
 ```shell
-git clone --recursive https://github.com/lionlai1989/cmake_template.git
+git clone --recursive https://github.com/lionlai1989/pybind11_example.git
 ```
 If you forgot to use the `--recursive` option when cloning, you can still clone the submodules by running the command `git submodule update --init --recursive`.
 
 ### Installing
-* Download repo: `git clone --recursive https://github.com/lionlai1989/pybind11_example.git`. If `--recursive` is not used when cloning, then `git submodule update --init` can be run to clone the submodule.
-* Create, activate venv and update pip: `python3 -m venv venv && source venv/bin/activate && python3 -m pip install --upgrade pip`
-* Install: `python3 -m pip install .`
-* Install in editable mode: `python3 -m pip install -e .`
-* Install from github repo: `python3 -m pip install "pybind11_eigen @ git+https://github.com/lionlai1989/pybind11_example.git"` or `python3 -m pip install "pybind11_eigen @ git+ssh://git@github.com/lionlai1989/pybind11_example.git"`. Notice the name of the package is `pybind11_eigen` but not `pybind11_example`. 
+It's a C++ project which has Python binding. Thus, the installation process is primary for Python users. Please following the steps below to install this package:
+* Create a Python virtual environment `venv`, activate `venv`, and update pip: `python3 -m venv venv && source venv/bin/activate && python3 -m pip install --upgrade pip`
+* There are two ways to install this package, either first downloading and installing the repository or installing from [Github repo](https://github.com/lionlai1989/pybind11_example) directly:
+* Download and install: `python3 -m pip install .`
+* Install from Github repo: `python3 -m pip install "pybind11_template @ git+https://github.com/lionlai1989/pybind11_example.git"` or `python3 -m pip install "pybind11_template @ git+ssh://git@github.com/lionlai1989/pybind11_example.git"`. Notice the name of the package is `pybind11_template` but not `pybind11_example`. 
 
+
+* Install in editable mode: `python3 -m pip install -e .`
 
 * if got error:
 ```
@@ -81,10 +83,10 @@ $ python3 test_pybind11.py
 ```
 * Run `python3` in the virtual environment. currently, i need to go to `build` folder to run the code below.
 ```
-import pybind11_eigen
+import pybind11_template
 import numpy as np
 a = np.array([1,2,3])
-b = pybind11_eigen.crossMatrix(a)
+b = pybind11_template.crossMatrix(a)
 ```
 
 ### Developing
