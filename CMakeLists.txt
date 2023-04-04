@@ -25,3 +25,12 @@ install (
 # It must be called before adding `tests` subdirectory.
 enable_testing()
 add_subdirectory(tests)
+
+add_subdirectory(extern/pybind11)
+pybind11_add_module(pybind11_template pybind11_template.cpp)
+
+# EXAMPLE_VERSION_INFO is defined by setup.py and passed into the C++ code as a
+# define (VERSION_INFO) here.
+target_compile_definitions(pybind11_template
+                           PRIVATE VERSION_INFO=${EXAMPLE_VERSION_INFO})
+                           
