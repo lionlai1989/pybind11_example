@@ -59,19 +59,20 @@ If you forgot to use the `--recursive` option when cloning, you can still clone 
 
 ### Installing
 It's a C++ project which has Python binding. Thus, the installation process is primary for Python users. Please following the steps below to install this package:
-* Create a Python virtual environment `venv`, activate `venv`, and update pip: `python3 -m venv venv && source venv/bin/activate && python3 -m pip install --upgrade pip`
+* Create a Python virtual environment `venv`, activate `venv`, and update pip:
+```shell
+python3 -m venv venv && source venv/bin/activate && python3 -m pip install --upgrade pip
+```
 * There are two ways to install this package, either first downloading and installing the repository or installing from [Github repo](https://github.com/lionlai1989/pybind11_example) directly:
 * Download and install: `python3 -m pip install .`
 * Install from Github repo: `python3 -m pip install "pybind11_template @ git+https://github.com/lionlai1989/pybind11_example.git"` or `python3 -m pip install "pybind11_template @ git+ssh://git@github.com/lionlai1989/pybind11_example.git"`. Notice the name of the package is `pybind11_template` but not `pybind11_example`. 
-
+* (Optional) If the following error occurs:
+```shell
+~/venv/lib/python3.8/site-packages/pybind11/include/pybind11/detail/common.h:266:10: fatal error: Python.h: No such file or directory
+```
+Please execute `sudo apt install python3-dev`. See [this](https://github.com/pybind/pybind11/issues/1728) for more information.
 
 * Install in editable mode: `python3 -m pip install -e .`
-
-* if got error:
-```
-/home/lai/pybind11_example/venv/lib/python3.8/site-packages/pybind11/include/pybind11/detail/common.h:266:10: fatal error: Python.h: No such file or directory
-```
-Run `sudo apt install python3-dev` will install python3.8 on ubuntu20.04.
 
 ### Executing program
 
