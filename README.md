@@ -39,7 +39,13 @@ Before you start, please make sure you have the following dependencies installed
   ```
   (cd extern/xsimd && cmake -D CMAKE_INSTALL_PREFIX=/tmp/xsimd-install && make install)
   ```
-  
+  * Install xtensor-python: Copy `extern/pybind11` to `xtensor-python/.`. And then run
+  ```
+  (cd extern/xtensor-python && cmake -D CMAKE_INSTALL_PREFIX=/tmp/xtensor-python-install -D CMAKE_PREFIX_PATH="/tmp/xtl-install;/tmp/xtensor-install;/tmp/xsimd-install" && make install)
+  ```
+  -DPYTHON_INCLUDE_DIR=$(python -c "import sysconfig; print(sysconfig.get_path('include'))")  \
+-DPYTHON_LIBRARY=$(python -c "import sysconfig; print(sysconfig.get_config_var('LIBDIR'))")
+
 * **Development tools for Linux and VS Code:** To develop our project, we'll be using Linux and Visual Studio Code (VS Code). To have a smoother experience, you should install the following tools and extensions for VS Code:
   * `C/C++`
   * `C/C++ Extension`

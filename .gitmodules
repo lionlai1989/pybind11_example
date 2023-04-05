@@ -15,3 +15,6 @@
 [submodule "extern/xtl"]
 	path = extern/xtl
 	url = git@github.com:xtensor-stack/xtl.git
+[submodule "extern/xtensor-python"]
+	path = extern/xtensor-python
+	url = git@github.com:xtensor-stack/xtensor-python.git

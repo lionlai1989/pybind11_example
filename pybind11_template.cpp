@@ -1,14 +1,21 @@
-// #include <src/my_eigen.hpp> // <---------- this needs to be commented out.
 #include <iostream>
-#include <pybind11/eigen.h> // It must be used here. It doesn't work with <Eigen/Dense>.
+#include <mypackage/Student.hpp>
+#include <mypackage/rgb2gray.hpp>
 #include <pybind11/numpy.h>
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
-//#include <unsupported/Eigen/CXX11/Tensor>
-// #include <src/Student.hpp>
+
+#include <xtensor/xarray.hpp>
+#include <xtensor/xmath.hpp>
+
+#define FORCE_IMPORT_ARRAY
+
+#include <xtensor-python/pyarray.hpp>
+#include <xtensor-python/pyvectorize.hpp>
 
 namespace py = pybind11;
 
+inline xt::pyarray<double> example2(xt::pyarray<double> &m) { return m + 2; }
 // Eigen::Matrix<float, 3, 3> crossMatrix(Eigen::Matrix<float, 3, 1> v) {
 //   Eigen::Matrix<float, 3, 3> m;
 //   m << 0, -v[2], v[1], v[2], 0, -v[0], -v[1], v[0], 0;
@@ -31,21 +38,25 @@ namespace py = pybind11;
 //   return vector_cars;
 // }
 
+Student get_student() { return Student{"John"}; }
+
 PYBIND11_MODULE(pybind11_template, m) {
   // the following line doesn't work. if applied, there will be import error.
   // python3 -m pip install -e . doesn't work.
-  m.def("crossMatrix", &wrapper_crossMatrix);
+  // m.def("crossMatrix", &wrapper_crossMatrix);
 
   // m.def("buy_car", &buy_car);
+  m.def("example2", example2, "Return the the specified array plus 2");
+  m.def("get_student", &get_student);
 
-  // py::class_<Student>(m, "Student")
-  //       .def(py::init<const std::string &>())
-  //       .def("display", &Student::display)
-  //       .def("get_name", &Student::get_name);
+  py::class_<Student>(m, "Student")
+      .def(py::init<const std::string &>())
+      .def("display", &Student::display)
+      .def("get_name", &Student::get_name);
 
-  // py::class_<Car>(m, "Car")
-  //     .def(py::init<>()) // <-- bind the default constructor
-  //     .def_readwrite("num_window", &Car::num_window)
-  //     .def_readwrite("num_tire", &Car::num_tire)
-  //     .def_readwrite("maintenance_per_week", &Car::maintenance_per_week);
+  //   py::class_<Car>(m, "Car")
+  //       .def(py::init<>()) // <-- bind the default constructor
+  //       .def_readwrite("num_window", &Car::num_window)
+  //       .def_readwrite("num_tire", &Car::num_tire)
+  //       .def_readwrite("maintenance_per_week", &Car::maintenance_per_week);
 }
