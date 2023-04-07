@@ -24,9 +24,8 @@ Before you start, please make sure you have the following dependencies installed
 * **stb image library:** This is a C library for loading and saving images. It's included as a git submodule, so you don't need to do anything extra.
 * **Pybind11:** Pybind11 is also included as a git submodule, so you don't need to do anything extra.
 * **xtensor-assosiated library:** xtensor is a numpy for C++ library. All
-  required code is added as git submodules. Unlike eigen and stb library, I
-  can't figure out a way to just add folders to make CMake work. We need to
-  first install xtensor and then use it. Please follow the instruction below:
+  required code is added as git submodules. Unlike `Pybind11` library, I
+  can't figure out a way of installing them by using `add_subdirectory` in `CMakeLists.txt`. Thus, users must first install `xtl`, `xtensor`, and `xsimd` under `/tmp` as following:
   * Isntall xtl:
   ```
   (cd extern/xtl && cmake -D CMAKE_INSTALL_PREFIX=/tmp/xtl-install && make install)
@@ -39,12 +38,6 @@ Before you start, please make sure you have the following dependencies installed
   ```
   (cd extern/xsimd && cmake -D CMAKE_INSTALL_PREFIX=/tmp/xsimd-install && make install)
   ```
-  * Install xtensor-python: Copy `extern/pybind11` to `xtensor-python/.`. And then run
-  ```
-  (cd extern/xtensor-python && cmake -D CMAKE_INSTALL_PREFIX=/tmp/xtensor-python-install -D CMAKE_PREFIX_PATH="/tmp/xtl-install;/tmp/xtensor-install;/tmp/xsimd-install" && make install)
-  ```
-  -DPYTHON_INCLUDE_DIR=$(python -c "import sysconfig; print(sysconfig.get_path('include'))")  \
--DPYTHON_LIBRARY=$(python -c "import sysconfig; print(sysconfig.get_config_var('LIBDIR'))")
 
 * **Development tools for Linux and VS Code:** To develop our project, we'll be using Linux and Visual Studio Code (VS Code). To have a smoother experience, you should install the following tools and extensions for VS Code:
   * `C/C++`
@@ -56,45 +49,35 @@ Before you start, please make sure you have the following dependencies installed
   * `ninja`
   * `python3-dev` (install this with apt install python3-dev)
 
-### Downloading (Optional)
-* To download this repository, run the following command:
-```shell
-git clone --recursive https://github.com/lionlai1989/pybind11_example.git
-```
-If you forgot to use the `--recursive` option when cloning, you can still clone the submodules by running the command `git submodule update --init --recursive`.
-
 ### Installing
 It's a C++ project which has Python binding. Thus, the installation process is primary for Python users. Please following the steps below to install this package:
+* (Optional) Download this repository. 
+  ```shell
+  git clone --recursive https://github.com/lionlai1989/pybind11_example.git
+  ```
+  If you forgot to use the `--recursive` option when cloning, you can still clone the submodules by running the command `git submodule update --init --recursive`.
+
 * Create a Python virtual environment `venv`, activate `venv`, and update pip:
-```shell
-python3 -m venv venv && source venv/bin/activate && python3 -m pip install --upgrade pip
-```
-* There are two ways to install this package, either first downloading and installing the repository or installing from [Github repo](https://github.com/lionlai1989/pybind11_example) directly:
-* Download and install: `python3 -m pip install .`
-* Install from Github repo: `python3 -m pip install "pybind11_template @ git+https://github.com/lionlai1989/pybind11_example.git"` or `python3 -m pip install "pybind11_template @ git+ssh://git@github.com/lionlai1989/pybind11_example.git"`. Notice the name of the package is `pybind11_template` but not `pybind11_example`. 
+  ```shell
+  python3 -m venv venv && source venv/bin/activate && python3 -m pip install --upgrade pip
+  ```
+
+* Install from Github repository: Notice the name of the package is `pybind11_template` but not `pybind11_example`
+  ```
+  python3 -m pip install "pybind11_template @ git+ssh://git@github.com/lionlai1989/pybind11_example.git"
+  ```
+
 * (Optional) If the following error occurs:
-```shell
-~/venv/lib/python3.8/site-packages/pybind11/include/pybind11/detail/common.h:266:10: fatal error: Python.h: No such file or directory
-```
-Please execute `sudo apt install python3-dev`. See [this](https://github.com/pybind/pybind11/issues/1728) for more information.
+  ```shell
+  ~/venv/lib/python3.8/site-packages/pybind11/include/pybind11/detail/common.h:266:10: fatal error: Python.h: No such file or directory
+  ```
+  Please execute `sudo apt install python3-dev`. See [this](https://github.com/pybind/pybind11/issues/1728) for more information.
 
 * Install in editable mode: `python3 -m pip install -e .`
 
-### Executing program
+### Verify the installation
+If you've already cloned the repository, you can run the command `python3 test_pybind11.py` to execute the tests. If you don't clone the repository, you can download test_pybind11.py from [this location](https://github.com/lionlai1989/pybind11_example/blob/master/test_pybind11.py). Once you run the script, it will test `pybind11_template` and generate two new images: `./examples/files/book_gray.png` and `./examples/files/book_in_scene_gray.jpg`.
 
-* Run the `test_pybind11.py` to show the C++ library can be imported as a python package.  
-```
-$ python3 test_pybind11.py 
-4
-[1, 2, 3, 4, 5, 6, 7]
-```
-* Run `python3` in the virtual environment. currently, i need to go to `build` folder to run the code below.
-```
-import pybind11_template
-import numpy as np
-a = np.array([1,2,3])
-b = pybind11_template.crossMatrix(a)
-```
 
 ### Developing
 * First remove the folder `build/temp.linux-x86_64-cpython-38/pybind11_eigen` which has the memory of configuration from pip install. This step just has to be run the first time.
@@ -104,26 +87,22 @@ cmake -Druntest=ON . -B build/temp.linux-x86_64-cpython-38/pybind11_eigen -DCMAK
 ```
 One thing to note here is that the ninja version used here is different from the ninja version used in pip install.
 * Run tests. `(cd build/temp.linux-x86_64-cpython-38/pybind11_eigen; ctest -V)`
+* Try libvips and CImg and terrasect and probably opencv.
+tensorflow uses eigen::tensor though.
 
-## Help
+Use Clang Static Analyzer and clang-tidy and GoogleTest
 
-Any advise for common problems or issues.
-```
-command to run if program contains helper info
-```
+## Contributing
+
+Your feedback, comments, and questions about this project are welcome, as are any contributions you'd like to make. Please feel free to create an issue or a pull request in this repository. Together, let's improve this template and make life easier for C++ programmers.
 
 ## Authors
 
-Contributors names and contact info
-Zion Lai
-[@DomPizzie](https://twitter.com/dompizzie)
+[@lionlai](https://github.com/lionlai1989)
 
 ## Version History
 
-* 0.2
-    * Various bug fixes and optimizations
-    * See [commit change]() or See [release history]()
-* 0.1
+* 0.0.1
     * Initial Release
 
 ## License
@@ -131,12 +110,10 @@ Zion Lai
 This project is licensed under the [NAME HERE] License - see the LICENSE.md file for details
 
 ## Acknowledgments
+Explore the inspiration and references listed here to further expand your knowledge and sharpen your skills.
 
-Inspiration, code snippets, etc.
-* [pybind-cmake-example](https://github.com/pybind/cmake_example)\
+Pybind11:
+* [pybind-cmake-example](https://github.com/pybind/cmake_example)
+
+GoogleTest:
 * [gtest-cmake-example](https://github.com/dmonopoly/gtest-cmake-example)
-
-Try libvips and CImg and terrasect and probably opencv.
-tensorflow uses eigen::tensor though.
-
-Use Clang Static Analyzer and clang-tidy and GoogleTest
