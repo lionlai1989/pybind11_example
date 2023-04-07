@@ -139,23 +139,29 @@ ImageXTensor::ImageXTensor(ImageXTensor &&other)
    * if the size of `this.pixels` is the same as `other.pixels`.
    */
   std::clog << "Move Constructor\n";
+  swap(other);
 
-  // Reset all `other`'s members because they are not relevant anymore.
-  other.channels = 0;
-  other.height = 0;
-  other.width = 0;
-  other.size = 0;
-  other.pixels = nullptr;
+  /** NOTE: Remind myself how to do things in an old school way.
+   * Reset all `other`'s members because they are not relevant anymore.
+   * other.channels = 0;
+   * other.height = 0;
+   * other.width = 0;
+   * other.size = 0;
+   * other.pixels = nullptr;
+   */
 }
 
 ImageXTensor &ImageXTensor::operator=(ImageXTensor &&other) {
   std::clog << "Move Assignment Operator\n";
+  swap(other);
+
+  /** Remind myself how to do things in an old school way.
   if (this != &other) {
     channels = other.channels;
     height = other.height;
     width = other.width;
     size = other.size;
-    /**
+
      * NOTE: We don't need to check if `this->pixels` points to nullptr or the
      * size of `this->pixels` is the same as `other.pixels`, because
      * `this->pixels` is stealing the resource from `other.pixels`. And the
@@ -164,7 +170,7 @@ ImageXTensor &ImageXTensor::operator=(ImageXTensor &&other) {
      * Also, we need to use std::move() to transfer the ownership of an object.
      * https://stackoverflow.com/questions/26318506/transferring-the-ownership-of-object-from-one-unique-ptr-to-another-unique-ptr-i
      * Finally, remember to reset other.
-     */
+
     pixels = std::move(other.pixels);
     other.channels = 0;
     other.height = 0;
@@ -172,6 +178,8 @@ ImageXTensor &ImageXTensor::operator=(ImageXTensor &&other) {
     other.size = 0;
     other.pixels = nullptr;
   }
+  */
+
   return *this;
 }
 
@@ -231,6 +239,14 @@ bool ImageXTensor::save(std::string file_path) {
   return true;
 }
 
+void ImageXTensor::swap(ImageXTensor &other) {
+  std::swap(channels, other.channels);
+  std::swap(height, other.height);
+  std::swap(width, other.width);
+  std::swap(size, other.size);
+  std::swap(pixels, other.pixels);
+}
+
 ImageXTensor rgb_to_grayscale_xtensor(const ImageXTensor &img) {
   assert(img.channels >= 3);
   ImageXTensor gray(1, img.height, img.width);
@@ -277,6 +293,28 @@ ImageXTensor rgb_to_grayscale_xtensor(const ImageXTensor &img) {
    * it possible that gray can be moved to an object in caller function? Eg,
    * caller_gray = std::move(rgb_to_grayscale(img));
    */
+  return gray;
+}
+
+xt::xarray<double> rgb_to_grayscale_xtensor(const xt::xarray<double> &pixels) {
+  /**
+   * The shape of `pixels`: (channel, height, width)
+   */
+  assert(pixels.shape(0) >= 3);
+  auto height = pixels.shape(1);
+  auto width = pixels.shape(2);
+  xt::xarray<double>::shape_type shape = {1, height, width};
+  xt::xarray<double> gray(shape);
+  /**
+   * Slice r, g and b channels out. NOTE: `red`, `green` and `blue` are 2D.
+   */
+  xt::xarray<double> red = xt::view(pixels, 0, xt::all(), xt::all());
+  xt::xarray<double> green = xt::view(pixels, 1, xt::all(), xt::all());
+  xt::xarray<double> blue = xt::view(pixels, 2, xt::all(), xt::all());
+
+  xt::view(gray, 0, xt::all(), xt::all()) =
+      0.299 * red + 0.587 * green + 0.114 * blue;
+
   return gray;
 }
 

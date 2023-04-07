@@ -1,6 +1,7 @@
 #include <iostream>
 #include <mypackage/Student.hpp>
 #include <mypackage/rgb2gray.hpp>
+
 #include <pybind11/numpy.h>
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -15,48 +16,38 @@
 
 namespace py = pybind11;
 
-inline xt::pyarray<double> example2(xt::pyarray<double> &m) { return m + 2; }
-// Eigen::Matrix<float, 3, 3> crossMatrix(Eigen::Matrix<float, 3, 1> v) {
-//   Eigen::Matrix<float, 3, 3> m;
-//   m << 0, -v[2], v[1], v[2], 0, -v[0], -v[1], v[0], 0;
-//   return m;
-// }
+template <class T> double sum_of_sines(T &m) {
+  auto sines = xt::sin(m); // sines does not actually hold values.
+  return std::accumulate(sines.begin(), sines.end(), 0.0);
+}
 
-// Eigen::Matrix<float, 3, 3> wrapper_crossMatrix(Eigen::Matrix<float, 3, 1> v)
-// {
-//   auto m = crossMatrix(v);
-//   return m;
-// }
+// In the Python API this a reference to a temporary variable
+double sum_of_cosines(const xt::xarray<double> &m) {
+  auto cosines = xt::cos(m); // cosines does not actually hold values.
+  return std::accumulate(cosines.begin(), cosines.end(), 0.0);
+}
 
-// std::vector<Car> buy_car() {
-//   std::vector<Car> vector_cars;
-//   Car c;
-//   c.num_window = 6;
-//   c.num_tire = 4;
-//   c.maintenance_per_week = {1, 2, 3, 4, 5, 6, 7};
-//   vector_cars.emplace_back(c);
-//   return vector_cars;
-// }
+Student get_student(std::string s) { return Student{s}; }
 
-Student get_student() { return Student{"John"}; }
+bool wrap_rgb2gray_image_xtensor(std::string input, std::string output) {
+  mypackage::rgb2gray_image_xtensor(input, output);
+  return 0;
+}
 
 PYBIND11_MODULE(pybind11_template, m) {
-  // the following line doesn't work. if applied, there will be import error.
-  // python3 -m pip install -e . doesn't work.
-  // m.def("crossMatrix", &wrapper_crossMatrix);
+  xt::import_numpy();
+  m.doc() = "Test module for xtensor python bindings";
 
-  // m.def("buy_car", &buy_car);
-  m.def("example2", example2, "Return the the specified array plus 2");
+  m.def("sum_of_sines", sum_of_sines<xt::pyarray<double>>,
+        "Sum the sines of the input values");
+  m.def("sum_of_cosines", sum_of_cosines,
+        "Sum the cosines of the input values");
+
+  m.def("rgb2gray_image_xtensor", &wrap_rgb2gray_image_xtensor);
+
   m.def("get_student", &get_student);
-
   py::class_<Student>(m, "Student")
       .def(py::init<const std::string &>())
       .def("display", &Student::display)
       .def("get_name", &Student::get_name);
-
-  //   py::class_<Car>(m, "Car")
-  //       .def(py::init<>()) // <-- bind the default constructor
-  //       .def_readwrite("num_window", &Car::num_window)
-  //       .def_readwrite("num_tire", &Car::num_tire)
-  //       .def_readwrite("maintenance_per_week", &Car::maintenance_per_week);
 }
