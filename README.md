@@ -19,13 +19,18 @@ This template has the following features:
 ## Getting Started
 
 ### Dependencies
+
 Before you start, please make sure you have the following dependencies installed:
+
 * **CMake 3.22.0 or higher:** If you don't have CMake installed, or if you need to update it, you can follow the instructions [here](https://askubuntu.com/questions/355565/how-do-i-install-the-latest-version-of-cmake-from-the-command-line). To use version 3.22, you can download it from https://cmake.org/files/v3.22/cmake-3.22.6.tar.gz.
+
 * **stb image library:** This is a C library for loading and saving images. It's included as a git submodule, so you don't need to do anything extra.
+
 * **Pybind11:** Pybind11 is also included as a git submodule, so you don't need to do anything extra.
+
 * **xtensor-assosiated library:** xtensor is a numpy for C++ library. All
   required code is added as git submodules. Unlike `Pybind11` library, I
-  can't figure out a way of installing them by using `add_subdirectory` in `CMakeLists.txt`. Thus, users must first install `xtl`, `xtensor`, and `xsimd` under `/tmp` as following:
+  can't figure out a way to install them by using `add_subdirectory` in `CMakeLists.txt`. Thus, users must first install `xtl`, `xtensor`, and `xsimd` under `/tmp` as following:
   * Isntall xtl:
   ```
   (cd extern/xtl && cmake -D CMAKE_INSTALL_PREFIX=/tmp/xtl-install && make install)
