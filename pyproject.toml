@@ -22,7 +22,8 @@ readme = "README.md"
 requires-python = ">=3.8"
 
 dependencies = [
-    "numpy" # Required by xtensor.
+    "numpy", # Required by xtensor.
+    "Pillow"
 ]
 
 

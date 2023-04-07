@@ -42,7 +42,7 @@ int main(int argc, char **argv) {
             << gray_path << '\n';
 
   if (method == "xtensor") {
-    mypackage::rgb2gray_image_xtensor(rgb_path, gray_path);
+    mypackage::image_rgb2gray(rgb_path, gray_path);
   } else {
     std::cerr << "Unsuppported rgb2gray method.";
   }

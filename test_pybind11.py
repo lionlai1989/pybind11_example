@@ -1,29 +1,43 @@
-
 import pybind11_template
 import numpy as np
-# from PIL import Image
+from PIL import Image
 
 if __name__ == "__main__":
-    car = pybind11_template.buy_car()
-    print(car[0].num_tire)
-    print(car[0].maintenance_per_week)
-
-    s = pybind11_template.Student("John")
+    s = pybind11_template.get_student("Aaron")
     s.display()
-    # a = np.array([[[1,2,3], [4,5,6]],[[7,8,9], [0,1,2]]])
-    # print(a, a.shape)
-    # print(pybind11_eigen.eigenTensor(a))
 
-    # ret = pybind11_eigen.crossMatrix(np.array([1,2,3]))
-    # print(ret)
+    a = np.array([0, 1, 2])
+    print(pybind11_template.sum_of_sines(a))
+    print(pybind11_template.sum_of_cosines(a))
+
+    b = np.array([[0, 1, 2], [3, 4, 5]])
+    print(pybind11_template.sum_of_sines(b))
+    print(pybind11_template.sum_of_cosines(b))
+
+    c = np.array([[[0, 1, 2], [3, 4, 5], [6, 7, 8]]])
+    print(pybind11_template.sum_of_sines(c))
+    print(pybind11_template.sum_of_cosines(c))
     
-    # with Image.open("handsomeboy.jpg") as img:
-    #     pixels = np.asarray(img)
-    #     #img.show()
-    # print(pixels.shape)
+    pybind11_template.image_rgb2gray("./examples/files/book.png", "./examples/files/book_gray.png")
 
-    # # Use C++ to process pixels.
-    # # processed_pixels = pybind11_eigen.image2digit(pixels)
+    
+    with Image.open("./examples/files/book_in_scene.jpg") as im:
+        # pixels: (height, width, channel)
+        pixels = np.asarray(im)
+        print(f"The shape of pixels: {pixels.shape}")
 
-    # processed_img = Image.fromarray(pixels)
-    # processed_img.show()
+        # Convert uint8 to 0-1.
+        pixels = pixels / 255.0
+        
+        # pixel_rgb2gray takes (channel, height, width)
+        gray = pybind11_template.pixel_rgb2gray(np.moveaxis(pixels, -1, 0))
+        print(f"The shape of gray: {gray.shape}")
+
+        # Convert 0-1 to uint8. Use np.floor to avoid overflow.
+        gray = np.floor(255*gray).astype(np.uint8)
+
+        gray = np.moveaxis(gray, 0, -1)
+        print(f"The shape of gray: {gray.shape}")
+        # NOTE: If image is grayscale, pillow only accepts 2D array but not 3D.
+        out_im = Image.fromarray(gray[:, :, 0])
+        out_im.save("./examples/files/book_in_scene_gray.jpg")

@@ -29,9 +29,13 @@ double sum_of_cosines(const xt::xarray<double> &m) {
 
 Student get_student(std::string s) { return Student{s}; }
 
-bool wrap_rgb2gray_image_xtensor(std::string input, std::string output) {
-  mypackage::rgb2gray_image_xtensor(input, output);
+bool wrap_image_rgb2gray(std::string input, std::string output) {
+  mypackage::image_rgb2gray(input, output);
   return 0;
+}
+
+xt::xarray<double> wrap_pixel_rgb2gray(const xt::xarray<double> &m) {
+  return mypackage::pixel_rgb2gray(m);
 }
 
 PYBIND11_MODULE(pybind11_template, m) {
@@ -43,7 +47,8 @@ PYBIND11_MODULE(pybind11_template, m) {
   m.def("sum_of_cosines", sum_of_cosines,
         "Sum the cosines of the input values");
 
-  m.def("rgb2gray_image_xtensor", &wrap_rgb2gray_image_xtensor);
+  m.def("image_rgb2gray", &wrap_image_rgb2gray);
+  m.def("pixel_rgb2gray", &wrap_pixel_rgb2gray);
 
   m.def("get_student", &get_student);
   py::class_<Student>(m, "Student")
