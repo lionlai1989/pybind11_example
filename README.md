@@ -81,7 +81,7 @@ It's a C++ project which has Python binding. Thus, the installation process is p
 * Install in editable mode: `python3 -m pip install -e .`
 
 ### Verify the installation
-If you've already cloned the repository, you can run the command `python3 test_pybind11.py` to execute the tests. If you don't clone the repository, you can download test_pybind11.py from [this location](https://github.com/lionlai1989/pybind11_example/blob/master/test_pybind11.py). Once you run the script, it will test `pybind11_template` and generate two new images: `./examples/files/book_gray.png` and `./examples/files/book_in_scene_gray.jpg`.
+If you've already cloned the repository, you can run the command `python3 test_pybind11.py` to execute the tests. If you don't clone the repository, you can download `test_pybind11.py` from [this location](https://github.com/lionlai1989/pybind11_example/blob/master/test_pybind11.py). Once you run the script, it will test `pybind11_template` and generate two new images: `./examples/files/book_gray.png` and `./examples/files/book_in_scene_gray.jpg`.
 
 
 ### Developing
