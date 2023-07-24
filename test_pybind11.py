@@ -18,10 +18,10 @@ if __name__ == "__main__":
     print(pybind11_template.sum_of_sines(c))
     print(pybind11_template.sum_of_cosines(c))
     
-    pybind11_template.image_rgb2gray("./examples/files/book.png", "./examples/files/book_gray.png")
+    pybind11_template.image_rgb2gray("./examples/files/ikura36.png", "./examples/files/ikura36_gray.png")
 
     
-    with Image.open("./examples/files/book_in_scene.jpg") as im:
+    with Image.open("./examples/files/louvre.jpg") as im:
         # pixels: (height, width, channel)
         pixels = np.asarray(im)
         print(f"The shape of pixels: {pixels.shape}")
@@ -40,4 +40,4 @@ if __name__ == "__main__":
         print(f"The shape of gray: {gray.shape}")
         # NOTE: If image is grayscale, pillow only accepts 2D array but not 3D.
         out_im = Image.fromarray(gray[:, :, 0])
-        out_im.save("./examples/files/book_in_scene_gray.jpg")
+        out_im.save("./examples/files/louvre_gray.jpg")

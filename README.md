@@ -1,14 +1,6 @@
 # Pybind11 Project Template
 
-Welcome to the C++ project template designed for self-education! Our aim is to
-help you create a C++ library using some of the most useful C/C++ packages,
-Pybind11, and cmake. It's important to note that this project is focused on C++
-development rather than Python, so don't be surprised if the development flow
-feels a bit different from Python development. With this template, you can get
-hands-on experience building a C++ library while exploring the benefits of cmake
-and Pybind11. So, let's dive in and start learning!
-
-As a beginner myself, I found that many of the Pybind11 tutorials online were either too simplistic to be practical for real-world projects or far too complicated to grasp as a newcomer. Of course, simple projects are great for learning the basics, but often, I found myself spending hours cobbling together multiple tutorials to create a state in which I could really start programming in C++. This template is my humble attempt to bridge that gap - an intermediate level resource to help myself and others learn how to create a C++ project with Python binding. My hope is that, in the future, when I need to start a C++ project with Python binding, I can simply use this template to quickly and easily handle the building environment, allowing me to focus on the actual code. So, let's dive in and learn together!
+Welcome to a C++ project template designed for quickly starting a C++ project with Python binding.  
 
 ## Description
 
@@ -81,8 +73,15 @@ It's a C++ project which has Python binding. Thus, the installation process is p
 * Install in editable mode: `python3 -m pip install -e .`
 
 ### Verify the installation
-If you've already cloned the repository, you can run the command `python3 test_pybind11.py` to execute the tests. If you don't clone the repository, you can download `test_pybind11.py` from [this location](https://github.com/lionlai1989/pybind11_example/blob/master/test_pybind11.py). Once you run the script, it will test `pybind11_template` and generate two new images: `./examples/files/book_gray.png` and `./examples/files/book_in_scene_gray.jpg`.
-
+If you've already cloned the repository, you can run the command `python3 test_pybind11.py` to execute the tests. If you don't clone the repository, you can download `test_pybind11.py` from [this location](https://github.com/lionlai1989/pybind11_example/blob/master/test_pybind11.py). Once you run the script, it will test `pybind11_template` and convert two images from RGB to grayscale: `./examples/files/ikura36_gray.png` and `./examples/files/louvre_gray.jpg`.
+  <p align="left">
+    <img src="./examples/files/louvre.jpg" width="300" title="Input RGB Image with JPG Format">
+    <img src="./examples/files/louvre_gray.jpg" width="300" title="Output Grayscale Image with JPG Format">
+  </p>
+  <p align="left">
+    <img src="./examples/files/ikura36.png" width="300" title="Input RGB Image with PNG Format">
+    <img src="./examples/files/ikura36_gray.png" width="300" title="Output Grayscale Image with PNG Format">
+  </p>
 
 ### Developing
 * First remove the folder `build/temp.linux-x86_64-cpython-38/pybind11_eigen` which has the memory of configuration from pip install. This step just has to be run the first time.
